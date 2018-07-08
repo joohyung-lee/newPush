@@ -18,12 +18,13 @@
         top: 0;
         left: 0;
         width: 100%;
-        transition: all .3s;
+        transition: transform 0.3s ease-out;
         transform: translateY(-37px)
     }
 
     .new-alert.active {
-        transform: translateY(0)
+        transition: transform 0.3s ease-out;
+        transform: translateY(0);
     }
 
     .progress {
