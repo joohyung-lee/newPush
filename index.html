@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .new-alert {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: all .3s;
+        transform: translateY(-37px)
+    }
+
+    .new-alert.active {
+        transform: translateY(0)
+    }
+
+    .progress {
+        background: #feb2d0;
+        /* Old browsers */
+        background: -moz-linear-gradient(left, #feb2d0 0%, #ff4481 50%, #feb2d0 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #feb2d0 0%, #ff4481 50%, #feb2d0 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #feb2d0 0%, #ff4481 50%, #feb2d0 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb2d0', endColorstr='#feb2d0', GradientType=1);
+        /* IE6-9 */
+        background-position: 0px 0;
+        background-size: 750px;
+        height: 37px;
+        text-align: center;
+        animation: loop 2s linear infinite;
+    }
+
+    .progress span {
+        line-height: 37px;
+        color: #fff;
+        font-size: 13px;
+    }
+
+    @keyframes loop {
+        0% {
+            background-position: 0 0
+        }
+        100% {
+            background-position: 750px 0
+        }
+
+    }
+</style>
+
+<body>
+    <div class="new-alert" onclick="pushRemove()">
+        <div class="progress">
+            <span>Check out the 26 new posts!</span>
+        </div>
+    </div>
+    <!-- test button -->
+    <button onclick="push()" style="position: absolute;width:100%;display: block;text-align: center;top:100px;border:1px solid #ccc;">PUSH</button>
+</body>
+<script>
+    var newState=false;
+    function push() {
+        if (!newState) {
+            newState = true
+            var target = document.querySelector('.new-alert');
+            target.classList.add('active');
+            timer = setTimeout(function () {
+                target.classList.remove('active');
+                clearTimeout(timer);
+                newState = false;
+            }, 3000)
+        } else {
+            return false
+        }
+    }
+
+    function pushRemove() {
+        var target = document.querySelector('.new-alert');
+        target.classList.remove('active');
+        clearTimeout(timer)
+        newState = false
+    }
+</script>
+
+</html>
