@@ -102,12 +102,12 @@
             var target = document.querySelector('.new-alert');
             target.classList.remove('disappear');
             target.classList.add('active');
-            timer = setTimeout(function () {
-                target.classList.add('disappear');
-                target.classList.remove('active');
-                clearTimeout(timer);
-                newState = false;
-            }, 3000)
+            // timer = setTimeout(function () {
+            //     target.classList.add('disappear');
+            //     target.classList.remove('active');
+            //     clearTimeout(timer);
+            //     newState = false;
+            // }, 3000)
         } else {
             return false
         }
