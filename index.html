@@ -15,16 +15,17 @@
 
     .new-alert {
         position: absolute;
-        top: -37px;
+        top: 0;
         left: 0;
         width: 100%;
-        transition: all 0.3s ease-out;
-
+        transform: translateY(-37px);
     }
 
     .new-alert.active {
-        top:0;
-        transform: translateY(0);
+        -webkit-animation: appear 0.3s forwards;
+    }
+    .new-alert.disappear {
+        -webkit-animation: disappear 0.3s forwards;
     }
 
     .progress {
@@ -50,7 +51,22 @@
         color: #fff;
         font-size: 13px;
     }
-
+    @keyframes appear{
+        0%{
+            transform: translateY(-37px);
+        }
+        100%{
+            transform: translateY(0);
+        }
+    }
+    @keyframes disappear{
+        0%{
+            transform: translateY(0);
+        }
+        100%{
+            transform: translateY(-37px);
+        }
+    }
     @keyframes loop {
         0% {
             background-position: 0 0
@@ -77,8 +93,10 @@
         if (!newState) {
             newState = true
             var target = document.querySelector('.new-alert');
+            target.classList.remove('disappear');
             target.classList.add('active');
             timer = setTimeout(function () {
+                target.classList.add('disappear');
                 target.classList.remove('active');
                 clearTimeout(timer);
                 newState = false;
@@ -90,6 +108,7 @@
 
     function pushRemove() {
         var target = document.querySelector('.new-alert');
+        target.classList.add('disappear');
         target.classList.remove('active');
         clearTimeout(timer)
         newState = false
