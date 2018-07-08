@@ -3,8 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -20,15 +18,14 @@
         top: 0;
         left: 0;
         width: 100%;
-        transform: translate3d(0,-37px,0)
+        transition: transform 0.3s ease-out;
+        transform: translate3d(0,-37px,0);
+        will-change: transform;  
     }
 
     .new-alert.active {
-        -webkit-animation: appear 0.3s forwards;
-    }
-
-    .new-alert.disappear {
-        -webkit-animation: disappear 0.3s forwards;
+        transition: transform 0.3s ease-out;
+        transform: translate3d(0,0,0);
     }
 
     .progress {
@@ -55,24 +52,6 @@
         font-size: 13px;
     }
 
-    @keyframes appear {
-        0% {
-            -webkit-transform: translate3d(0,-37px,0)
-        }
-        100% {
-            -webkit-transform: translate3d(0,0px,0);
-        }
-    }
-
-    @keyframes disappear {
-        0% {
-            -webkit-transform: translate3d(0,0px,0);
-        }
-        100% {
-            -webkit-transform: translate3d(0,-37px,0)
-        }
-    }
-
     @keyframes loop {
         0% {
             background-position: 0 0
@@ -94,16 +73,13 @@
     <button onclick="push()" style="position: absolute;width:100%;display: block;text-align: center;top:100px;border:1px solid #ccc;">PUSH</button>
 </body>
 <script>
-    var newState = false;
-
+    var newState=false;
     function push() {
         if (!newState) {
             newState = true
             var target = document.querySelector('.new-alert');
-            target.classList.remove('disappear');
             target.classList.add('active');
             timer = setTimeout(function () {
-                target.classList.add('disappear');
                 target.classList.remove('active');
                 clearTimeout(timer);
                 newState = false;
@@ -115,7 +91,6 @@
 
     function pushRemove() {
         var target = document.querySelector('.new-alert');
-        target.classList.add('disappear');
         target.classList.remove('active');
         clearTimeout(timer)
         newState = false
