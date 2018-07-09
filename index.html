@@ -20,25 +20,25 @@
         left: 0;
         width: 100%;
         transition: transform 0.3s ease-out;
-        transform: translate3d(0,-37px,0);
-        will-change: transform;  
+        transform: translate3d(0, -37px, 0);
+        will-change: transform;
     }
 
     .new-alert.active {
         transition: transform 0.3s ease-out;
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 
     .progress {
-        background: #feb2d0;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff91ae+0,ff91ae+10,ff014f+50,ff91ae+90,ff91ae+100 */
+        background: #ff507e;
         /* Old browsers */
-        background: -moz-linear-gradient(left, #feb2d0 0%, #ff4481 50%, #feb2d0 100%);
+        background: -moz-linear-gradient(left, #ff004e 0%, #fc2b91 50%, #ff004e 100%);
         /* FF3.6-15 */
-        background: -webkit-linear-gradient(left, #feb2d0 0%, #ff4481 50%, #feb2d0 100%);
+        background: -webkit-linear-gradient(left, #ff004e 0%,  #fc2b91 50%,  #ff004e 100%);
         /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to right, #feb2d0 0%, #ff4481 50%, #feb2d0 100%);
+        background: linear-gradient(to right, #ff004e 0%, #fc2b91 50%,  #ff004e 100%);
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb2d0', endColorstr='#feb2d0', GradientType=1);
         /* IE6-9 */
         background-position: 0px 0;
         background-size: 750px;
@@ -74,7 +74,8 @@
     <button onclick="push()" style="position: absolute;width:100%;display: block;text-align: center;top:100px;border:1px solid #ccc;">PUSH</button>
 </body>
 <script>
-    var newState=false;
+    var newState = false;
+
     function push() {
         if (!newState) {
             newState = true
